@@ -2,7 +2,7 @@
 <?php
 /* ---------------------------------------------------------------------
 * Test 1
-* Nom du fichier: cities.php
+* Nom du fichier: edit.php
 * Auteur: Tabea Suter
 * Date: Mars 2015
 * Description: 
@@ -22,7 +22,7 @@ const DB_NAME = 'world';
     <title>te1</title>
   </head>
   <body>
- <p> Vous pouvez maintenant modifier les données.</p>
- <a href="cities.php">Revenir à la page précédente</a> 
+    <p> Vous pouvez maintenant modifier les données.</p>
+    <a href="cities.php">Revenir à la page précédente</a> 
   </body>
 </html>
