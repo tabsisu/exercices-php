@@ -74,7 +74,7 @@ while ($row = $result->fetch_assoc()) {
         <td> <?= $row['Name']?>
         <td> <?= $row['CountryCode']?>
         <td> <?= $row['District']?>
-        <td><a href="edit.php">Modifier</a>  
+        <td><a href="edit.php?ID=<?= $row['ID']?>">Modifier</a>  
       </tr>
 
 <?php     
