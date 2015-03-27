@@ -5,7 +5,7 @@
 * Nom du fichier: edit.php
 * Auteur: Tabea Suter
 * Date: Mars 2015
-* Description: 
+* Description:
 * ---------------------------------------------------------------------
 */
 // Constantes
@@ -16,7 +16,6 @@ const DB_PWD = 'cpnv1234';
 const DB_NAME = 'world';
 
 $ID = (int) $_GET['ID'];
-
 ?>
 <html>
   <head>
@@ -24,51 +23,85 @@ $ID = (int) $_GET['ID'];
     <title>te1</title>
   </head>
   <body>
+<?php 
 
-<?php // Connexion à la base de donnée
-    $mysqli = new mysqli(DB_SERVER, DB_USER, DB_PWD, DB_NAME);
+// Connexion à la base de donnée
+$mysqli = new mysqli(DB_SERVER, DB_USER, DB_PWD, DB_NAME);
 
-    //Vérification des erreurs
-    if ($mysqli->connect_errno) {
-        die("Problème de connexion à la base de donnée({$dbh->connect_errno})".
-                                                    $dbh->connect_error );
-    }
+//Vérification des erreurs
+if ($mysqli->connect_errno) {
+    die("Problème de connexion à la base de donnée({$dbh->connect_errno})".
+         $dbh->connect_error );
+}
 
-    echo "BRAVO, la connexion s'est bien passée!";
-    
+echo "BRAVO, la connexion s'est bien passée!";
+
 //Requête - afficher les données de la table City
-$query = "SELECT ID, Name, CountryCode, District FROM City WHERE ID= $ID";
+$query = "SELECT ID, Name, CountryCode, District, Population FROM City WHERE ID= $ID";
 
 if (! $result = $mysqli->query($query)) {
-  
     //Gestion des erreurs - requêtes
-    echo "Erreur: impossible d'exécuter la requête ($query)  : " . mysqli_error();
+    echo "Erreur: impossible d'exécuter la requête ($query) : " . mysqli_error();
     exit;
 } else {
-
+    
     // Créer la boucle
-    while ($row = $result->fetch_assoc()) {
-        //Et afficher les données sous forme de formulaire
+    $row = $result->fetch_assoc();
+    
+    //Et afficher les données sous forme de formulaire
 ?>
-        <form>
-            <p><b>Vous pouvez maintenant modifier les données.</b></p>
-            <p>ID <input type="text" value=<?= $row['ID']?>></p>
-            <p>Name <input type="text" value=<?= $row['Name']?>></p>
-            <p>CountryCode <input type="text" value=<?= $row['CountryCode']?>></p>
-            <p>District <input type="text" value=<?= $row['District']?>></p>
-            <p><input type="submit" value="Enregistrer" /> <input type="submit" value="Annuler" /></p>
-        </form>
+    <h2>Vous pouvez maintenant modifier les données.</h2>
+    
+    <form action='update.php' method='post'>
+      <p>
+        <label>
+          ID 
+          <input name="ID" type="text" value="<?= $row['ID']?>">
+        </label>
+      </p>
+      
+      <p>
+        <label>
+        Name 
+        <input name="Name" type="text" value="<?= $row['Name']?>">
+        </label>
+      </p>
+      
+      <p>
+        <label>
+        CountryCode 
+        <input name="CountryCode" type="text" value="<?= $row['CountryCode']?>">
+        </label>
+      </p>
+      
+      <p>
+        <label>
+        District
+        <input name="District" type="text" value="<?= $row['District']?>">
+        </label>
+      </p>
+      
+      <p>
+        <label>
+        Population
+        <input name="Population" type="text" value="<?= $row['Population']?>">
+        </label>
+      </p>
+      
+      <p>
+        <label>
+        <input name="Enregistrer" type="submit" value="Enregistrer">
+        </label>
+      </p>
+    </form>
 
-
-<?php     
-    }
-$result->free();
-
+<?php
+    $result->free();
 }
+
 //Déconnexion
 $mysqli->close();
-
 ?>
-    <a href="cities.php">Revenir à la page précédente</a> 
-  </body>
+<a href="cities.php">Revenir à la page précédente</a>
+</body>
 </html>
