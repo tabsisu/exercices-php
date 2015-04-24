@@ -13,17 +13,11 @@ const DB_SERVER = 'localhost';
 const DB_USER = 'cpnv';
 const DB_PWD = 'cpnv1234';
 const DB_NAME = 'world';
-?>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>te1</title>
-  </head>
-<body>
-<?php
 
-// Connexion à la base de donnée
-$mysqli = new mysqli(DB_SERVER, DB_USER, DB_PWD, DB_NAME);
+
+// Connexion à la base de donnée  
+// @ fait que si il y a une erreur il n'affiche rien
+$mysqli =  @ new mysqli(DB_SERVER, DB_USER, DB_PWD, DB_NAME);
 
 //Vérification des erreurs
 if ($mysqli->connect_errno) {
@@ -39,9 +33,18 @@ if ($result = $mysqli->query("SELECT ID, Name, CountryCode, District FROM City W
     printf("J'ai trouvé y %d villes suisses.\n", $nbr);
     $result->close();
 }
-
-//Tableau avec les données
 ?>
+
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>te1</title>
+  </head>
+<body>
+
+<!--Tableau avec les données --->
+
 
       <table>
         <tr>

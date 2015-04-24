@@ -40,18 +40,15 @@ if ($mysqli->connect_errno) {
 }
 
 //Requête - afficher les données de la table City
-$update_sql= "UPDATE City SET District=$district, Population=$population WHERE ID=$id";
+$update_sql= "UPDATE City SET District='$district', Population=$population WHERE ID=$id";
 
 if (! $result = $mysqli->query($update_sql)) {
     //Gestion des erreurs - requêtes
     echo "Erreur: impossible d'exécuter la requête ($update_sql) : " . $mysqli->error;
     exit;
 } else {
+ 
 
-
-
-
-$result->free();
 }
 
 //Déconnexion
