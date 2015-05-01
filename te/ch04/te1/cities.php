@@ -25,12 +25,11 @@ if ($mysqli->connect_errno) {
     $dbh->connect_error );
 }
 
-echo "BRAVO, la connexion s'est bien passée!";
-
 // Requête - afficher le nbr de villes suisses
-if ($result = $mysqli->query("SELECT ID, Name, CountryCode, District FROM City WHERE CountryCode = 'CHE' ORDER BY Name")){
+if ($result = $mysqli->query("SELECT ID, Name, CountryCode, District 
+                              FROM City WHERE CountryCode = 'CHE' 
+                              ORDER BY Name")){
     $nbr = $result->num_rows;
-    printf("J'ai trouvé y %d villes suisses.\n", $nbr);
     $result->close();
 }
 ?>
@@ -43,7 +42,7 @@ if ($result = $mysqli->query("SELECT ID, Name, CountryCode, District FROM City W
   </head>
 <body>
 
-<!--Tableau avec les données --->
+<!--Tableau avec les données -->
 
 
       <table>
@@ -57,7 +56,8 @@ if ($result = $mysqli->query("SELECT ID, Name, CountryCode, District FROM City W
 <?php
 
 //Requête - afficher les données de la table City
-$query = "SELECT ID, Name, CountryCode, District FROM City WHERE CountryCode = 'CHE' ORDER BY Name";
+$query = "SELECT ID, Name, CountryCode, District FROM City 
+          WHERE CountryCode = 'CHE' ORDER BY Name";
 if ($result = $mysqli->query($query)) {
     
 //Gestion des erreurs - requêtes
@@ -66,7 +66,7 @@ if (!$result) {
     exit;
 }
 
-// Créer la boucle pour afficher les villes suisses
+// Créer la boucle pour affivcher les villes suisses
 while ($row = $result->fetch_assoc()) {
     
 //Et afficher les données sous forme de tableau

@@ -40,7 +40,8 @@ if ($mysqli->connect_errno) {
 }
 
 //Requête - afficher les données de la table City
-$update_sql= "UPDATE City SET District='$district', Population=$population WHERE ID=$id";
+$update_sql= "UPDATE City SET District='$district', 
+              Population=$population WHERE ID=$id AND CountryCode='CHE'";
 
 if (! $result = $mysqli->query($update_sql)) {
     //Gestion des erreurs - requêtes
@@ -55,6 +56,6 @@ if (! $result = $mysqli->query($update_sql)) {
 $mysqli->close();
 
 ?>
-    <a href="cities.php">Revenir à la page précédente</a>
+    <a href="cities.php">Revenir à la première page</a>
   </body>
 </html>

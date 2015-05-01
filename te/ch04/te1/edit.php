@@ -31,13 +31,13 @@ $mysqli = new mysqli(DB_SERVER, DB_USER, DB_PWD, DB_NAME);
 //Vérification des erreurs
 if ($mysqli->connect_errno) {
     die("Problème de connexion à la base de donnée({$dbh->connect_errno})".
-         $dbh->connect_error );
+                                                    $dbh->connect_error );
 }
 
-echo "BRAVO, la connexion s'est bien passée!";
 
 //Requête - afficher les données de la table City
-$query = "SELECT ID, Name, CountryCode, District, Population FROM City WHERE ID= $ID";
+$query = "SELECT ID, Name, CountryCode, District, Population FROM City 
+          WHERE ID= $ID AND CountryCode='CHE'";
 
 if (! $result = $mysqli->query($query)) {
     //Gestion des erreurs - requêtes
@@ -56,35 +56,35 @@ if (! $result = $mysqli->query($query)) {
       <p>
         <label>
           ID 
-          <input name="ID" type="text" value="<?= $row['ID']?>">
+          <input name="ID" type="text" value="<?= $row['ID']?>" readonly>
         </label>
       </p>
       
       <p>
         <label>
         Name 
-        <input name="Name" type="text" value="<?= $row['Name']?>">
+        <input name="Name" type="text" value="<?= $row['Name']?>" maxlength="35">
         </label>
       </p>
       
       <p>
         <label>
         CountryCode 
-        <input name="CountryCode" type="text" value="<?= $row['CountryCode']?>">
+        <input name="CountryCode" type="text" value="<?= $row['CountryCode']?>" readonly>
         </label>
       </p>
       
       <p>
         <label>
         District
-        <input name="District" type="text" value="<?= $row['District']?>">
+        <input name="District" type="text" value="<?= $row['District']?>" maxlength="20">
         </label>
       </p>
       
       <p>
         <label>
         Population
-        <input name="Population" type="text" value="<?= $row['Population']?>">
+        <input name="Population" type="number" min="0" max="99999999999" value="<?= $row['Population']?>">
         </label>
       </p>
       
